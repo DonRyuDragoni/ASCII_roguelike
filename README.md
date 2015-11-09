@@ -18,7 +18,9 @@ TODOs
 Instructions
 ============
 
-To compile and run this program, all you need is [CMake][cmake] and a C++ compiler that supports C++14 (yes, I moved the requisites up a bit for this one, even though I'm not sure if I actually use anything from the C++14 standard... I know I did before cleaning all test code...).
+To compile and run this program, you need [CMake][cmake] and a C++ compiler that supports C++14 (yes, I moved the requisites up a bit for this one, even though I'm not sure if I actually use anything from the C++14 standard... I know I did before cleaning all test code...).
+
+Oh, this time you'll also need [Boost][boost] (specifically, `system` and `filesystem`). See `sys::lstfiles` in `system/system.cpp`.
 
 If you are not familiar with CMake, the instructions are simple: make a build directory inside the project tree and, from inside of it, call CMake poiting to the folder above. It will generate the necessary files to build the program in your machine; in a \*nix system:
 
@@ -34,3 +36,4 @@ In a Windows machine, apparently CMake generates Visual Studio files. Check the 
 [tictactoe]: https://github.com/DonRyuDragoni/tic_tac_toe
 [challenge]: https://www.youtube.com/watch?list=PLSPw4ASQYyynKPY0I-QFHK0iJTjnvNUys&feature=player_detailpage&v=tVWckBaB5xo
 [plantuml]: http://plantuml.com/
+[boost]: http://www.boost.org/
