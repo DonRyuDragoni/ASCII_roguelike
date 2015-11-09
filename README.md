@@ -10,13 +10,10 @@ This time I created a [PlantUML][plantuml] file to describe all the classes in t
 TODOs
 =====
 
-[ ] every `.level` should have a `.data` to describe the player's data (at a minimum, initial position, attack and health) and enemies (same thing, with one enemy per line untill the end of the file);
-
-[ ] validation for `*.data` files;
-
-[ ] load all valid maps and ask the player which one to run;
-
-[ ] create more maps.
+- [ ] every `.level` should have a `.data` to describe the player's data (at a minimum, initial position, attack and health) and enemies (same thing, with one enemy per line untill the end of the file);
+- [ ] validation for `*.data` files;
+- [ ] load all valid maps and ask the player which one to run;
+- [ ] create more maps.
 
 Instructions
 ============
