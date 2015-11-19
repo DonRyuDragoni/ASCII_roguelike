@@ -12,6 +12,11 @@ option(DEBUG_MODE
     ON
     )
 
+# turn on all warnings (cgg/clang only, remember to delete later)
+if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GCC")
+    add_definitions ("-Wall")
+endif()
+
 option(SANITY_CHECK_ALL
     "Checks the sanity of each map before playing."
     ON
