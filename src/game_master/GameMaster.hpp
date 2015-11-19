@@ -1,7 +1,3 @@
-/**
-
-*/
-
 #pragma once
 
 #include <map>
@@ -12,14 +8,23 @@
 #include "Map.hpp"
 #include "system.hpp"
 
+/**
+Master of the game, it controlls all life within this universe.
+*/
 class GameMaster {
 
 private:
-    std::map<char,char> _mapchars;
-    std::vector<std::string> _valid_maps;
-    std::list<Enemy> _enemies;
+    static int _num_masters; // thou shalt not have two or more masters
+    std::map<char,char> _mapchars; // maps the representation in a `.level` file to the output for the user
+    std::vector<std::string> _valid_maps; // playable maps
+    std::list<Enemy> _enemies; // all living enemies in the current map
 
 public:
+    /**
+    Minimum constructor for the GameMaster.
+
+    @param mapchars maps the representation in a `.level` file to the output for the user
+    */
     GameMaster(std::map<char,char> mapchars);
 
     //selectMap();
