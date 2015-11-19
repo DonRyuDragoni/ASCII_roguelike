@@ -23,10 +23,10 @@ private:
     Coordinates _start_position;
     Coordinates _current_position;
     std::string _name;
+    char _representation;
     int _max_health;
     int _current_health;
     unsigned int _attack;
-    char _representation;
 
 protected:
     Entity(int start_x, int start_y, std::string name, char representation, int max_health = 100, unsigned int attack = 10)
