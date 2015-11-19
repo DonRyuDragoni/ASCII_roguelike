@@ -1,10 +1,18 @@
 #include "GameMaster.hpp"
 
 #include <iostream>
+#include <stdexcept>
 #include "system.hpp"
 #include "config.hpp"
 
+int GameMaster::_num_masters = 0;
+
 GameMaster::GameMaster(std::map<char,char> mapchars) : _mapchars(mapchars) {
+    ++_num_masters;
+
+    if (_num_masters > 1)
+        throw std::logic_error("There must be only one GameMaster.");
+
     // loads all valid maps
 }
 
@@ -13,12 +21,7 @@ bool GameMaster::checkSanityAll() {
 }
 
 void GameMaster::_cleanEnemies() {
-    for (std::list<Enemy>::iterator e_itr = _enemies.begin(); e_itr != _enemies.end(); ) {
-        if (e_itr->isDead())
-            e_itr = _enemies.erase(e_itr);
-        else
-            ++e_itr;
-        }
+    _enemies.remove_if( [](Enemy& e) -> bool { return e.isDead(); } );
 }
 
 void GameMaster::_movePlayer(Player& p, Map& current_map) {
