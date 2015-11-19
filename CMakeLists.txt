@@ -87,3 +87,22 @@ add_custom_target(
         $<TARGET_FILE_DIR:main>/resources
     COMMENT "Copying resources folder"
     )
+
+# === Documentation ===
+
+# To generate the documentation with Doxygen, remember to 'make doc' after
+# generating the Makefile.
+
+find_package(Doxygen)
+if(DOXYGEN_FOUND)
+    configure_file(
+        ${PROJECT_SOURCE_DIR}/doc/Doxyfile.in
+        ${PROJECT_BINARY_DIR}/doc/Doxyfile
+    )
+
+    add_custom_target(
+        doc #ALL
+        ${DOXYGEN_EXECUTABLE} ${PROJECT_BINARY_DIR}/doc/Doxyfile
+        COMMENT "Generating API documentation with Doxygen" VERBATIM
+    )
+endif(DOXYGEN_FOUND)
