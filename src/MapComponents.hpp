@@ -1,11 +1,21 @@
-/**
-This file defines each character that composes a map and what it is supposed to
-represent.
-*/
-
 #pragma once
 
+#include <string>
 #include <vector>
+
+/**
+A generic component of the map.
+*/
+struct Component {
+    bool walkable;   ///< if true, any Entity can walk over it
+    char level_char; ///< representation in the `.level` files
+    char print_char; ///< representation for the user
+
+    /**
+    Default constructor for the class.
+    */
+    Component(bool walkable, char level_char, char print_char);
+};
 
 struct TranslationList {
     char WALL;

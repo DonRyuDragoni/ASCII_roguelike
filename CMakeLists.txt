@@ -1,9 +1,11 @@
 # === Project Definition ===
 
 cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
-project("ASCII RogueLike" CXX)
-
 set(CMAKE_CXX_STANDARD 14)
+
+project("ASCII RogueLike" CXX)
+set(PROJECT_VERSION_MAJOR 0)
+set(PROJECT_VERSION_MINOR 1)
 
 # === Build options ===
 
@@ -13,7 +15,7 @@ option(DEBUG_MODE
     )
 
 # turn on all warnings (cgg/clang only, remember to delete later)
-if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GCC")
+if(CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GCC")
     add_definitions ("-Wall")
 endif()
 
@@ -23,12 +25,12 @@ option(SANITY_CHECK_ALL
     )
 
 # === Configuration ===
-set(PROJECT_VERSION_MAJOR 0)
-set(PROJECT_VERSION_MINOR 1)
+
 configure_file(
     "${PROJECT_SOURCE_DIR}/src/config.hpp.in" # template
     "${PROJECT_BINARY_DIR}/conf/config.hpp"   # output
     )
+
 include_directories("${PROJECT_BINARY_DIR}/conf")
 
 # === Boost ===
@@ -38,48 +40,39 @@ include_directories("${Boost_INCLUDE_DIR}")
 
 # === Build Libraries ===
 
-add_library(coordinates src/coordinates/Coordinates.cpp)
-include_directories(src/coordinates)
+add_library(random lib/random/random.cpp)
+include_directories(lib/random)
 
-add_library(entity src/entity/Entity.cpp)
-target_link_libraries(entity coordinates map)
-include_directories(src/entity)
-
-add_library(enemy src/enemy/Enemy.cpp)
-target_link_libraries(enemy coordinates entity random)
-include_directories(src/enemy)
-
-add_library(game_master src/game_master/GameMaster.cpp)
-include_directories(src/game_master)
-
-add_library(map src/map/Map.cpp)
-target_link_libraries(map coordinates map_components)
-include_directories(src/map)
-
-add_library(map_components src/map_components/MapComponents.cpp)
-include_directories(src/map_components)
-
-add_library(player src/player/Player.cpp)
-target_link_libraries(player coordinates enemy entity)
-include_directories(src/player)
-
-add_library(random src/random/random.cpp)
-include_directories(src/random)
-
-add_library(system src/system/system.cpp)
+add_library(system lib/system/system.cpp)
 target_link_libraries(system ${Boost_LIBRARIES} text)
-include_directories(src/system)
+include_directories(lib/system)
 
-add_library(text src/text/text.cpp)
-include_directories(src/text)
+add_library(text lib/text/text.cpp)
+include_directories(lib/text)
 
 # === Build Executables ===
 
-add_executable(main src/main)
+add_executable(main
+    src/main.cpp
+    src/Coordinates.hpp
+    src/Coordinates.cpp
+    src/Enemy.hpp
+    src/Enemy.cpp
+    src/Entity.hpp
+    src/Entity.cpp
+    src/GameMaster.hpp
+    src/GameMaster.cpp
+    src/Map.hpp
+    src/Map.cpp
+    src/MapComponents.hpp
+    src/MapComponents.cpp
+    src/Player.hpp
+    src/Player.cpp
+    )
 target_link_libraries(
     main
     # program libraries
-    coordinates entity enemy game_master map map_components player random system text
+    random system text
     )
 
 # copy resources to build directory if the build is successfull

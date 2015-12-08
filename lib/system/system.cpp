@@ -6,6 +6,7 @@
 #include <sstream>
 #include <iomanip>
 #include "text.hpp"
+#include "../../src/Map.hpp"
 
 namespace fs = boost::filesystem;
 

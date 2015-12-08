@@ -2,7 +2,7 @@
 
 #include <cstring>
 #include <boost/version.hpp>
-#include "Coordinates.hpp"
+#include "@PROJECT_SOURCE_DIR@/src/Coordinates.hpp"
 
 namespace config {
 
