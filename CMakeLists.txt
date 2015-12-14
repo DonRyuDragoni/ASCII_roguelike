@@ -60,10 +60,7 @@ include_directories(lib/text)
 # find all source files
 file(GLOB_RECURSE sources src/*.*pp)
 
-add_executable(
-    main
-    ${sources}
-    )
+add_executable(main ${sources})
 target_link_libraries(
     main
     # program libraries
