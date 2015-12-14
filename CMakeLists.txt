@@ -57,22 +57,12 @@ include_directories(lib/text)
 
 # === Build Executables ===
 
-add_executable(main
-    src/main.cpp
-    src/Coordinates.hpp
-    src/Coordinates.cpp
-    src/Enemy.hpp
-    src/Enemy.cpp
-    src/Entity.hpp
-    src/Entity.cpp
-    src/GameMaster.hpp
-    src/GameMaster.cpp
-    src/Map.hpp
-    src/Map.cpp
-    src/MapComponents.hpp
-    src/MapComponents.cpp
-    src/Player.hpp
-    src/Player.cpp
+# find all source files
+file(GLOB_RECURSE sources src/*.*pp)
+
+add_executable(
+    main
+    ${sources}
     )
 target_link_libraries(
     main
@@ -103,7 +93,7 @@ if(BUILD_TESTS)
     add_executable(unit_tests ${test_sources})
     target_link_libraries(unit_tests
         ${Boost_LIBRARIES}
-        random text 
+        random text
         )
 
     enable_testing()
